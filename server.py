@@ -134,6 +134,7 @@ def play_game(res, req):
                     },
                     {
                         'title': 'Покажи город на карте',
+                        'hide': True,
                         'url': f'https://yandex.ru/maps/?mode=search&text={city}'
                     }
                 ]
