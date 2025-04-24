@@ -7,9 +7,9 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 
 cities = {
-    '¨Æ·™¢†': ['1540737/daa6e420d33102bf6947', '213044/7df73ae4cc715175059e'],
-    '≠ÏÓ-©Æ‡™': ['1652229/728d5c86707054d4745f', '1030494/aca7ed7acefde2606bdc'],
-    'Ø†‡®¶': ["1652229/f77136c2364eb90a3ea8", '123494/aca7ed7acefd12e606bdc']
+    '–º–æ—Å–∫–≤–∞': ['1540737/daa6e420d33102bf6947', '213044/7df73ae4cc715175059e'],
+    '–Ω—å—é-–π–æ—Ä–∫': ['1652229/728d5c86707054d4745f', '1030494/aca7ed7acefde2606bdc'],
+    '–ø–∞—Ä–∏–∂': ["1652229/f77136c2364eb90a3ea8", '123494/aca7ed7acefd12e606bdc']
 }
 
 sessionStorage = {}
@@ -33,7 +33,7 @@ def main():
 def handle_dialog(res, req):
     user_id = req['session']['user_id']
     if req['session']['new']:
-        res['response']['text'] = 'è‡®¢•‚! ç†ßÆ¢® ·¢ÆÒ ®¨Ô!'
+        res['response']['text'] = '–ü—Ä–∏–≤–µ—Ç! –ù–∞–∑–æ–≤–∏ —Å–≤–æ—ë –∏–º—è!'
         sessionStorage[user_id] = {
             'first_name': None,
             'game_started': False
@@ -43,43 +43,43 @@ def handle_dialog(res, req):
     if sessionStorage[user_id]['first_name'] is None:
         first_name = get_first_name(req)
         if first_name is None:
-            res['response']['text'] = 'ç• ‡†··´ÎË†´† ®¨Ô. èÆ¢‚Æ‡®, ØÆ¶†´„©·‚†!'
+            res['response']['text'] = '–ù–µ —Ä–∞—Å—Å–ª—ã—à–∞–ª–∞ –∏–º—è. –ü–æ–≤—Ç–æ—Ä–∏, –ø–æ–∂–∞–ª—É–π—Å—Ç–∞!'
         else:
             sessionStorage[user_id]['first_name'] = first_name
             sessionStorage[user_id]['guessed_cities'] = []
-            res['response']['text'] = f'è‡®Ô‚≠Æ ØÆß≠†™Æ¨®‚Ï·Ô, {first_name.title()}. ü Ä´®·†. é‚£†§†•ËÏ £Æ‡Æ§ ØÆ ‰Æ‚Æ?'
+            res['response']['text'] = f'–ü—Ä–∏—è—Ç–Ω–æ –ø–æ–∑–Ω–∞–∫–æ–º–∏—Ç—å—Å—è, {first_name.title()}. –Ø –ê–ª–∏—Å–∞. –û—Ç–≥–∞–¥–∞–µ—à—å –≥–æ—Ä–æ–¥ –ø–æ —Ñ–æ—Ç–æ?'
             res['response']['buttons'] = [
                 {
-                    'title': 'Ñ†',
+                    'title': '–î–∞',
                     'hide': True
                 },
                 {
-                    'title': 'ç•‚',
+                    'title': '–ù–µ—Ç',
                     'hide': True
                 }
             ]
     else:
         if not sessionStorage[user_id]['game_started']:
-            if '§†' in req['request']['nlu']['tokens']:
+            if '–¥–∞' in req['request']['nlu']['tokens']:
                 if len(sessionStorage[user_id]['guessed_cities']) == 3:
-                    res['response']['text'] = 'íÎ Æ‚£†§†´ ¢·• £Æ‡Æ§†!'
+                    res['response']['text'] = '–¢—ã –æ—Ç–≥–∞–¥–∞–ª –≤—Å–µ –≥–æ—Ä–æ–¥–∞!'
                     res['end_session'] = True
                 else:
                     sessionStorage[user_id]['game_started'] = True
                     sessionStorage[user_id]['attempt'] = 1
                     play_game(res, req)
-            elif '≠•‚' in req['request']['nlu']['tokens']:
-                res['response']['text'] = 'ç„ ® ´†§≠Æ!'
+            elif '–Ω–µ—Ç' in req['request']['nlu']['tokens']:
+                res['response']['text'] = '–ù—É –∏ –ª–∞–¥–Ω–æ!'
                 res['end_session'] = True
             else:
-                res['response']['text'] = 'ç• ØÆ≠Ô´† Æ‚¢•‚†! í†™ §† ®´® ≠•‚?'
+                res['response']['text'] = '–ù–µ –ø–æ–Ω—è–ª–∞ –æ—Ç–≤–µ—Ç–∞! –¢–∞–∫ –¥–∞ –∏–ª–∏ –Ω–µ—Ç?'
                 res['response']['buttons'] = [
                     {
-                        'title': 'Ñ†',
+                        'title': '–î–∞',
                         'hide': True
                     },
                     {
-                        'title': 'ç•‚',
+                        'title': '–ù–µ—Ç',
                         'hide': True
                     }
                 ]
@@ -97,28 +97,28 @@ def play_game(res, req):
         sessionStorage[user_id]['city'] = city
         res['response']['card'] = {}
         res['response']['card']['type'] = 'BigImage'
-        res['response']['card']['title'] = 'ó‚Æ Ì‚Æ ß† £Æ‡Æ§?'
+        res['response']['card']['title'] = '–ß—Ç–æ —ç—Ç–æ –∑–∞ –≥–æ—Ä–æ–¥?'
         res['response']['card']['image_id'] = cities[city][attempt - 1]
-        res['response']['text'] = 'íÆ£§† ·Î£‡†•¨!'
+        res['response']['text'] = '–¢–æ–≥–¥–∞ —Å—ã–≥—Ä–∞–µ–º!'
     else:
         city = sessionStorage[user_id]['city']
         if get_city(req) == city:
-            res['response']['text'] = 'è‡†¢®´Ï≠Æ! ëÎ£‡†•¨ •ÈÒ?'
+            res['response']['text'] = '–ü—Ä–∞–≤–∏–ª—å–Ω–æ! –°—ã–≥—Ä–∞–µ–º –µ—â—ë?'
             sessionStorage[user_id]['guessed_cities'].append(city)
             sessionStorage[user_id]['game_started'] = False
             return
         else:
             if attempt == 3:
-                res['response']['text'] = f'ÇÎ ØÎ‚†´®·Ï. ù‚Æ {city.title()}. ëÎ£‡†•¨ •ÈÒ?'
+                res['response']['text'] = f'–í—ã –ø—ã—Ç–∞–ª–∏—Å—å. –≠—Ç–æ {city.title()}. –°—ã–≥—Ä–∞–µ–º –µ—â—ë?'
                 sessionStorage[user_id]['game_started'] = False
                 sessionStorage[user_id]['guessed_cities'].append(city)
                 return
             else:
                 res['response']['card'] = {}
                 res['response']['card']['type'] = 'BigImage'
-                res['response']['card']['title'] = 'ç•Ø‡†¢®´Ï≠Æ. ÇÆ‚ ‚•°• §ÆØÆ´≠®‚•´Ï≠Æ• ‰Æ‚Æ'
+                res['response']['card']['title'] = '–ù–µ–ø—Ä–∞–≤–∏–ª—å–Ω–æ. –í–æ—Ç —Ç–µ–±–µ –¥–æ–ø–æ–ª–Ω–∏—Ç–µ–ª—å–Ω–æ–µ —Ñ–æ—Ç–æ'
                 res['response']['card']['image_id'] = cities[city][attempt - 1]
-                res['response']['text'] = 'Ä ¢Æ‚ ® ≠• „£†§†´!'
+                res['response']['text'] = '–ê –≤–æ—Ç –∏ –Ω–µ —É–≥–∞–¥–∞–ª!'
     sessionStorage[user_id]['attempt'] += 1
 
 
